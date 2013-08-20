@@ -333,7 +333,7 @@ require 'axlsx/workbook/worksheet/selection.rb'
       str << '<workbookPr date1904="' << @@date1904.to_s << '"/>'
       str << '<sheets>'
       @worksheets.each_with_index do |sheet, index|
-        str << '<sheet name="' << sheet.name << '" sheetId="' << (index+1).to_s << '" r:id="' << sheet.rId << '"/>'
+        str << '<sheet name="' << sheet.name << '" sheetId="' << (index+1).to_s << '" r:id="' << sheet.rId << (sheet.hidden ? 'state="hidden"' : '' ) << '"/>'
         if defined_name = sheet.auto_filter.defined_name
           add_defined_name defined_name, :name => '_xlnm._FilterDatabase', :local_sheet_id => index, :hidden => 1
         end

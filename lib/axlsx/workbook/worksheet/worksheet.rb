@@ -47,6 +47,12 @@ module Axlsx
       @name ||=  "Sheet" + (index+1).to_s
     end
 
+    # The state of the worksheet (hidden or not)
+    # @return [Boolean]
+    def hidden
+      @hidden
+    end
+
     # The sheet calculation properties
     # @return [SheetCalcPr]
     def sheet_calc_pr
@@ -332,6 +338,13 @@ module Axlsx
     def name=(name)
       validate_sheet_name name
       @name=Axlsx::coder.encode(name)
+    end
+
+    # Hidden or not worksheet
+    # Visible by default
+    # @param [Boolean] val
+    def hidden=(val)
+      @hidden = (val == false ? false : true)
     end
 
     # The auto filter range for the worksheet
